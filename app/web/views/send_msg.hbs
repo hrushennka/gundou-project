@@ -1,0 +1,329 @@
+<div style="padding: 100px; display: flex; justify-content: center; margin-bottom: 150px;">
+    <div class="serv_description" style="display: flex;">
+        <img style="border-radius:100%; border:solid 1px rgba(250, 92, 171, 0.37); margin:0px 20px 0px 10px;" src="{{guildAvatarUrl}}" width="100" height="100" />
+        <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; height: 50px;">
+            <h3 style="font-size: 30px; margin: 0px 0px 5px 0px;">{{guildName}}</h3>
+            <ul class="inline-list">
+                <li>Текстовых каналов: <span>{{textChannelCount}}</span></li>
+                <li>Участников: <span>{{memberCount}}</span></li>
+                <li>Голосовых каналов: <span>{{voiceChannelCount}}</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center;">
+    <div class="desc">
+        <div class="description_item" data-page-id="1">
+            <select class="styled_input_select" name="channelId">
+                <option value="1"><p style="margin:50px;">Текстовый чат</p> <span>&#9776;</span></option>
+                {{#each channels}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+            <select class="styled_input_select" style="top: 200px;" name="typeId" id="typeId">
+                <option value="0">Тип сообщений<span style="margin:10px;">&#9776;</span></option>
+                <option value="1">Текст c вложением</option>
+                <option value="2">Эмбед</option>
+            </select>
+
+            <div class="content" id="contentList" style="margin-top: 10px;"></div>
+            <input class="styled_input_button_send" type="submit" value="Отправить">
+        </div>
+    </div>
+
+    <div id="message_item" style="display: flex; align-items: center; ">
+     <div id="enter" class="enter" style="width: 90%; display: none; flex-direction: column; position: relative;">
+            
+            <textarea id="textInput" placeholder="Введите сообщение" style="margin-top: 10px; padding-right: 40px;"></textarea>
+            <input type="file" id="fileInput" style="display: none;">
+
+            <svg
+                id="clipIcon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 547.352 547.352"
+                style="position: absolute; right: 10px; bottom: 10px; cursor: pointer; width: 30px; height: 30px;">
+                <g>
+                    <g>
+                        <path d="M39.398,476.654c25.031,25.031,58.351,39.389,91.417,39.389c27.806,0,53.308-10.189,71.809-28.689l216.348-216.349
+                            c13.414-13.262,20.043-31.732,18.613-51.953c-2.791-39.456-38.482-75.144-77.938-77.938c-1.777-0.125-3.57-0.19-5.328-0.19
+                            c-18.078,0-34.678,6.72-46.74,18.92L118.392,349.031c-6.08,6.08-9.189,14.719-8.531,23.697c0.618,8.436,4.41,16.533,10.67,22.793
+                            c6.839,6.84,16.025,10.76,25.202,10.76c8.17,0,15.731-3.061,21.292-8.621l189.304-189.303c1.062-1.071,2.398-1.573,4.131-1.573
+                            c0.201,0,0.404,0.006,0.605,0.021c4.967,0.364,10.465,5.863,10.832,10.891c0.09,1.304-0.084,3.216-1.453,4.569L153.992,438.717
+                            c-7.402,7.402-17.785,11.479-29.238,11.479c-14.685,0-29.627-6.523-41.001-17.895c-10.456-10.457-16.763-23.715-17.76-37.342
+                            c-0.949-12.949,3.079-24.633,11.343-32.898l243.389-243.392c13.875-13.874,33.229-21.515,54.498-21.515
+                            c26.627,0,53.637,11.741,74.107,32.213c38.406,38.406,43.205,96.099,10.699,128.605L270.725,447.275
+                            c-6.08,6.08-9.189,14.719-8.531,23.697c0.618,8.436,4.41,16.533,10.67,22.793c6.839,6.84,16.025,10.76,25.203,10.76
+                            c8.17,0,15.73-3.061,21.291-8.619L508.66,306.602c56.963-56.962,50.246-156.369-14.979-221.593
+                            c-34.127-34.128-79.51-53.7-124.51-53.7v6.12l0,0l-0.004-6.12c-37.635,0.003-72.105,13.755-97.076,38.725L28.703,313.422
+                            c-20.591,20.592-30.67,49.104-28.385,80.295C2.552,424.236,16.433,453.689,39.398,476.654z"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+        <div id="embedFields" style="display: none; flex-direction: column;">
+            <div id="rainbow-picker" style="width: 400px; position: relative; height: 30px; cursor: pointer; background: linear-gradient(to right, 
+                        #FF0000, 
+                        #FF7F00, 
+                        #FFFF00, 
+                        #00FF00,
+                        #0000FF, 
+                        #4B0082 
+            ); border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);"><div id="point" style="display: none;"></div></div>
+
+            <input type="text" id="embedTitle" placeholder="Заголовок" style="margin-top: 10px;">
+            <textarea id="embedDescription" placeholder="Описание" style="margin-top: 10px;"></textarea>
+            <input type="text" id="embedImgUrl" placeholder="Url Изображения" style="margin-top: 10px;"> <!-- Здесь добавлено поле для URL -->
+        </div>
+
+        <input class="styled_input_button" type="button" value="Добавить в очередь">
+    </div>
+</div>
+
+<script>
+
+function checkButtonState() {
+    const messageType = document.getElementById('typeId').value;
+    const inputText = document.getElementById('textInput').value.trim();
+    const embedDescription = document.getElementById('embedDescription').value.trim();
+
+    const addButton = document.querySelector('.styled_input_button'); 
+    
+    if ((messageType === '1') || (messageType === '2')) {
+        addButton.disabled = false; 
+    } else {
+        addButton.disabled = true; 
+    }
+}
+
+const colors = [
+    '#FF0000', // красный
+    '#FF7F00', // оранжевый
+    '#FFFF00', // желтый
+    '#00FF00', // зеленый
+    '#0000FF', // синий
+    '#4B0082', // индиго
+];
+
+document.getElementById('typeId').addEventListener('change', function() {
+    const selectedType = this.value;
+    const enterDiv = document.getElementById('enter');
+    const embedFields = document.getElementById('embedFields');
+
+    enterDiv.style.display = 'none';
+    embedFields.style.display = 'none';
+
+    if (selectedType === "1") { // Текст
+        enterDiv.style.display = 'flex';
+    } else if (selectedType === "2") { // Эмбед
+        embedFields.style.display = 'flex';
+    }
+    checkButtonState();
+});
+
+let embedColor = '';
+
+document.getElementById('rainbow-picker').addEventListener('click', function(event) {
+    const rect = this.getBoundingClientRect();
+    const x = event.clientX - rect.left; 
+    const width = rect.width; 
+
+    const index = Math.floor((x / width) * (colors.length - 1)); 
+    embedColor = colors[index]; 
+
+    const point = document.getElementById('point');
+    point.style.display = "block";
+    point.style.left = x + 'px';
+
+    console.log(embedColor); 
+});
+
+document.getElementById('clipIcon').addEventListener('click', function() {
+    document.getElementById('fileInput').click();
+});
+
+document.getElementById('fileInput').addEventListener('change', function() {
+    const clipIcon = document.getElementById('clipIcon');
+    if (this.files.length > 0) {
+        clipIcon.style.fill = '#b61285';
+    } else {
+        clipIcon.style.fill = '#ccc';
+    }
+});
+</script>
+<script>
+document.querySelector('.styled_input_button').addEventListener('click', function() {
+    const messageType = document.getElementById('typeId').value;
+    const inputText = document.getElementById('textInput').value;
+    const embedDescription = document.getElementById('embedDescription').value;
+   
+    if (messageType === '1') { // Текст с вложением
+        if (!inputText) {
+            alert("Введите сообщение");
+            return;
+        }
+        messageContent = inputText;
+    } else if (messageType === '2') { // Эмбед
+        if (!embedDescription) {
+            alert("Введите описание эмбеда");
+            return;
+        }
+        messageContent = embedDescription;
+    }
+
+    // Создаем новый элемент сообщения
+    const contentList = document.getElementById('contentList');
+    const messageItem = document.createElement('div');
+    messageItem.classList.add('message-item');
+    messageItem.style.display = 'flex';
+    messageItem.style.justifyContent = 'space-between';
+    messageItem.style.alignItems = 'center';
+    messageItem.style.marginBottom = '10px';
+
+    messageItem.setAttribute('data-type', messageType);
+    messageItem.setAttribute('data-content', messageContent);
+    messageItem.setAttribute('data-color', embedColor);
+    if (!embedColor){
+        console.log(false)
+    }
+    else console.log(embedColor); 
+    messageItem.innerHTML = `
+        <span id="type" style="width:80%;">${messageType === '1' ? 'Текст' : 'Эмбед'}</span>
+            <svg class="edit-btn" stroke-width="2" width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.4443 5.68747L5.44587 14.6859C4.78722 15.3446 4.26719 16.1441 4.10888 17.062C3.94903 17.9888 3.89583 19.139 4.44432 19.6875C4.99281 20.236 6.14299 20.1828 7.0698 20.0229C7.98772 19.8646 8.78722 19.3446 9.44587 18.6859L18.4443 9.68747M14.4443 5.68747C14.4443 5.68747 17.4443 2.68747 19.4443 4.68747C21.4443 6.68747 18.4443 9.68747 18.4443 9.68747M14.4443 5.68747L18.4443 9.68747" fill="black" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            <svg class="delete-btn" version="1.1" width="25px" height="25px" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><g><g><path d="M465.064,207.562H26.908C12.076,207.562,0,219.698,0,234.53v22.804c0,14.832,12.072,27.104,26.908,27.104h438.156 c14.84,0,26.936-12.272,26.936-27.104V234.53C492,219.698,479.904,207.562,465.064,207.562z" fill="black" stroke="white" ></path></g></g></svg>
+        
+    `;
+
+    contentList.appendChild(messageItem);
+
+    document.getElementById('textInput').value = '';
+    document.getElementById('embedDescription').value = '';
+
+    messageItem.querySelector('.delete-btn').addEventListener('click', function() {
+        contentList.removeChild(messageItem);
+    });
+
+    messageItem.querySelector('.edit-btn').addEventListener('click', function() {
+        const currentContent = messageItem.getAttribute('data-content');
+        const currentType = messageItem.getAttribute('data-type');
+
+        document.getElementById('textInput').value = '';
+        document.getElementById('embedDescription').value = '';
+
+        if (currentType === '1') {
+            document.getElementById('textInput').value = currentContent;
+            document.getElementById('typeId').value = '1'; 
+            document.getElementById('enter').style.display = 'flex'; 
+            document.getElementById('embedFields').style.display = 'none'; 
+        } else if (currentType === '2') {
+            document.getElementById('embedDescription').value = currentContent;
+            document.getElementById('typeId').value = '2'; 
+            document.getElementById('embedFields').style.display = 'flex'; 
+            document.getElementById('enter').style.display = 'none'; 
+        }
+
+        contentList.removeChild(messageItem);
+    });
+});
+
+document.querySelector('.styled_input_button_send').addEventListener('click', async function() {
+    const contentList = document.getElementById('contentList');
+    const messageItems = contentList.getElementsByClassName('message-item'); 
+
+    if (messageItems.length === 0) {
+        alert("Очередь пуста!");
+        return;
+    }
+
+    const channelId = document.getElementsByName('channelId')[0].value; 
+    const token = document.getElementsByName("token")[0].value; 
+
+    if (!token) {
+        console.error('Токен не найден');
+        return;
+    }
+
+    if (!channelId || channelId === "") {
+        alert("Пожалуйста, выберите канал для отправки сообщения.");
+        return;
+    }
+
+    const fileInput = document.getElementById('fileInput'); 
+    const file = fileInput.files[0]; 
+
+    Array.from(messageItems).forEach(async (messageItem) => {
+        const messageType = messageItem.getAttribute('data-type');
+        const messageContent = messageItem.getAttribute('data-content');
+        const messageColor = messageItem.getAttribute('data-color'); 
+       
+        if (messageType === '1') { 
+            let formData = new FormData();
+            formData.append('token', token);
+            formData.append('channelId', channelId);
+            formData.append('text', messageContent);
+            if (file) {
+                formData.append('file', file); 
+            }
+            await sendMessage(formData);
+        } else if (messageType === '2') { 
+            let formData = new FormData();
+            const embedTitle = document.getElementById('embedTitle').value; 
+            const embedDescription = messageContent; 
+            const embedImgUrl = document.getElementById('embedImgUrl').value; 
+
+            formData.append('token', token);
+            formData.append('channelId', channelId);
+            formData.append('title', embedTitle);
+            formData.append('description', embedDescription);
+            formData.append('imgUrl', embedImgUrl);
+            formData.append('color', messageColor);
+
+            await sendEmbed(formData);
+        }
+    });
+
+    contentList.innerHTML = ''; 
+    fileInput.value = ''; 
+    alert("Сообщения отправлены!");
+});
+
+// Отправка текстового сообщения с файлом
+async function sendMessage(formData) {
+    try {
+        const response = await fetch('/sendMessage', {
+            method: 'POST',
+            body: formData 
+        });
+
+        const result = await response.json();
+        console.log(result);
+        if (!response.ok) {
+            throw new Error(result.error || 'Ошибка при отправке сообщения');
+        }
+    } catch (error) {
+        console.error('Ошибка при отправке сообщения:', error);
+        alert('Ошибка при отправке сообщения: ' + error.message);
+    }
+}
+
+async function sendEmbed(formData) {
+    try {
+        const response = await fetch('/sendEmbed', {
+            method: 'POST',
+            body: formData 
+        });
+
+        const result = await response.json();
+        console.log(result);
+        if (!response.ok) {
+            throw new Error(result.error || 'Ошибка при отправке эмбеда');
+        }
+    } catch (error) {
+        console.error('Ошибка при отправке эмбеда:', error);
+        alert('Ошибка при отправке эмбеда: ' + error.message);
+    }
+}
+</script>

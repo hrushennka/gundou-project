@@ -1,0 +1,89 @@
+<div style="padding: 100px; display: flex; justify-content: center; margin-bottom: 150px;">
+    <div class="serv_description" style="display: flex;">
+        <img style="border-radius:100%; border:solid 1px rgba(250, 92, 171, 0.37); margin:0px 20px 0px 10px;" src="{{guildAvatarUrl}}" width="100" height="100" />
+        <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; height: 50px;">
+            <h3 style="font-size: 30px; margin: 0px 0px 5px 0px;">{{guildName}}</h3>
+            <ul class="inline-list">
+                <li>Текстовых каналов: <span>{{textChannelCount}}</span></li>
+                <li>Участников: <span>{{memberCount}}</span></li>
+                <li>Голосовых каналов: <span>{{voiceChannelCount}}</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center;">
+    <div class="desc">
+        <div class="description_item" data-page-id="1">
+            <select class="styled_input_select" name="channelId">
+                <option value="1"><p style="margin:50px;">Голосовой чат</p> <span>&#9776;</span></option>
+                {{#each voiceChannels}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+
+    <div id="message_item" style="display: flex; align-items: flex-start; justify-content: space-between; ">
+        <div style="display: flex; flex-direction: column; margin: 0; ">
+        {{#each bots}}
+             <div class="member" style="display: flex; width: 340px; padding: 10px; align-items: center; flex-direction: row; text-align: center;"
+                onclick="selectMember('{{this.id}}', '{{this.username}}', '{{this.avatarURL}}', event)"> <!-- Передаем событие в функцию -->
+                <img src="{{this.avatarURL}}" alt="{{this.username}}" style="border-radius: 50%; width: 50px; height: 50px; padding: 10px;" />
+                <p>{{this.username}}</p>
+             </div>
+           
+        {{/each}}
+        </div>
+        <input class="styled_input_button" type="button" onclick="inviteBot()" value="Пригласить в канал">
+    </div>
+</div>
+
+<script>
+let selectedBotId = null;
+
+function selectMember(id, username, avatarURL, event) {
+    const previouslySelected = document.querySelector('.member.selected');
+    if (previouslySelected) {
+        previouslySelected.classList.remove('selected');
+    }
+
+    const currentMemberElement = event.currentTarget; 
+    currentMemberElement.classList.add('selected');
+    
+    selectedBotId = id;
+
+    console.log(`Выбран бот: ${username}`);
+}
+
+
+async function inviteBot() {
+    const channelId = document.getElementsByName('channelId')[0].value; 
+    const token = document.getElementsByName("token")[0]?.value; 
+    console.log(channelId)
+    if (selectedBotId && channelId) {
+        let formData = new FormData();
+        formData.append('token', token);
+        formData.append('voiceChannelId', channelId); 
+        formData.append('botId', selectedBotId);
+        try {
+            const response = await fetch('/invite', {  
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            if (!response.ok) {
+                throw new Error(`Ошибка: ${result.error }`);
+            }
+           
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка. Попробуйте еще раз.');
+        }
+    } else {
+        alert('Пожалуйста, выберите бота и канал.');
+    }
+}
+
+</script>
+

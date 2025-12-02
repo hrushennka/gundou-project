@@ -1,0 +1,741 @@
+{
+  "entries": [
+    {
+      "requestType": "Добавлено приветствие",
+      "endpoint": "/api/saveEmbed",
+      "date": "2024-12-22T13:32:20.000Z",
+      "body": {
+        "token": "1234",
+        "embedId": "4",
+        "color": "4277352",
+        "title": "Сообщение",
+        "description": "Приветственное",
+        "imgUrl": "https://i.pinimg.com/736x/24/db/13/24db13436b0a6ffa133cd16a651d85c3.jpg"
+      }
+    },
+    {
+      "requestType": "Добавлено приветствие",
+      "endpoint": "/api/saveEmbed",
+      "date": "2024-12-22T13:41:54.000Z",
+      "body": {
+        "token": "1234",
+        "embedId": "4",
+        "color": "4277352",
+        "title": "Сообщение",
+        "description": "Приветственное",
+        "imgUrl": "https://i.pinimg.com/736x/24/db/13/24db13436b0a6ffa133cd16a651d85c3.jpg"
+      }
+    },
+    {
+      "requestType": "Участник выгнан",
+      "endpoint": "/kick",
+      "date": "2024-12-22T13:43:43.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234"
+      }
+    },
+    {
+      "requestType": "Участник выгнан",
+      "endpoint": "/kick",
+      "date": "2024-12-22T13:58:19.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234"
+      }
+    },
+    {
+      "requestType": "Приветствие отправлено",
+      "endpoint": "/api/guildMemberAdd",
+      "date": "2024-12-22T13:58:58.000Z",
+      "body": {
+        "member": "328959122949144577"
+      }
+    },
+    {
+      "requestType": "Участник выгнан",
+      "endpoint": "/kick",
+      "date": "2024-12-22T14:02:44.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234"
+      }
+    },
+    {
+      "requestType": "Приветствие отправлено",
+      "endpoint": "/api/guildMemberAdd",
+      "date": "2024-12-22T14:03:57.000Z",
+      "body": {
+        "member": "328959122949144577"
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-22T22:30:40.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1283858721033682985"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-22T22:31:05.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1283858721033682985"
+        ]
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendMessage",
+      "date": "2024-12-25T22:03:20.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "text": "Текст с вложением"
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendEmbed",
+      "date": "2024-12-25T22:04:29.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "text": "Описание",
+        "title": "Заголовок",
+        "description": "Описание",
+        "imgUrl": "",
+        "color": "#4e00ff"
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendMessage",
+      "date": "2024-12-25T22:05:06.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "text": "Текст с вложением 2"
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendEmbed",
+      "date": "2024-12-25T22:05:40.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "text": "Описание",
+        "title": "Заголовок",
+        "description": "Описание",
+        "imgUrl": "",
+        "color": "#ff0049"
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendMessage",
+      "date": "2024-12-25T22:05:40.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "text": "Текст с вложением"
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendMessage",
+      "date": "2024-12-25T22:10:54.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "text": "Текст"
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendMessage",
+      "date": "2024-12-25T22:22:04.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1",
+        "text": "."
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendEmbed",
+      "date": "2024-12-25T22:22:04.000Z",
+      "body": {}
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendEmbed",
+      "date": "2024-12-25T22:22:31.000Z",
+      "body": {}
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendMessage",
+      "date": "2024-12-25T22:22:31.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "text": "."
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendEmbed",
+      "date": "2024-12-25T22:25:57.000Z",
+      "body": {}
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendMessage",
+      "date": "2024-12-25T22:25:57.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "text": "."
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendEmbed",
+      "date": "2024-12-25T22:27:26.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "title": ".",
+        "description": ".",
+        "imgUrl": "",
+        "color": "#00e4ff"
+      }
+    },
+    {
+      "requestType": "Сообщение отправлено",
+      "endpoint": "/sendMessage",
+      "date": "2024-12-25T22:27:26.000Z",
+      "body": {
+        "token": "1234",
+        "channelId": "1005942559790608394",
+        "text": "."
+      }
+    },
+    {
+      "requestType": "Добавлено приветствие",
+      "endpoint": "/api/saveEmbed",
+      "date": "2024-12-25T22:51:24.000Z",
+      "body": {
+        "token": "1234",
+        "embedId": "4",
+        "color": "4290",
+        "title": "Сообщение приветственное 1",
+        "description": "Описание",
+        "imgUrl": "https://i.pinimg.com/736x/24/db/13/24db13436b0a6ffa133cd16a651d85c3.jpg"
+      }
+    },
+    {
+      "requestType": "Добавлено приветствие",
+      "endpoint": "/api/saveEmbed",
+      "date": "2024-12-25T22:52:56.000Z",
+      "body": {
+        "token": "1234",
+        "embedId": "4",
+        "color": "#FFFF00",
+        "title": "Сообщение приветственное 1",
+        "description": "Описание",
+        "imgUrl": "https://i.pinimg.com/736x/24/db/13/24db13436b0a6ffa133cd16a651d85c3.jpg"
+      }
+    },
+    {
+      "requestType": "Добавлено приветствие",
+      "endpoint": "/api/saveEmbed",
+      "date": "2024-12-25T22:54:04.000Z",
+      "body": {
+        "token": "1234",
+        "embedId": "1",
+        "color": "65319",
+        "title": "Приветственное сообщение 2",
+        "description": "Описание ",
+        "imgUrl": "https://i.pinimg.com/736x/5c/8a/4f/5c8a4f8bf2528c8e3c2ec5d4659a5fe5.jpg"
+      }
+    },
+    {
+      "requestType": "Добавлено приветствие",
+      "endpoint": "/api/saveEmbed",
+      "date": "2024-12-25T22:54:45.000Z",
+      "body": {
+        "token": "1234",
+        "embedId": "5",
+        "color": "65319",
+        "title": "Приветственное сообщение 3",
+        "description": "Описание",
+        "imgUrl": "https://i.pinimg.com/736x/65/86/4c/65864c69a2069cecf738e69b056b53ed.jpg"
+      }
+    },
+    {
+      "requestType": "Удалено приветствие",
+      "endpoint": "/api/deleteEmbed",
+      "date": "2024-12-25T22:54:58.000Z",
+      "body": {
+        "token": "1234",
+        "embedId": "5"
+      }
+    },
+    {
+      "requestType": "Добавлено приветствие",
+      "endpoint": "/api/saveEmbed",
+      "date": "2024-12-25T22:55:02.000Z",
+      "body": {
+        "token": "1234",
+        "embedId": "5",
+        "color": "414489",
+        "title": "Приветственное сообщение 3",
+        "description": "Описание",
+        "imgUrl": "https://i.pinimg.com/736x/65/86/4c/65864c69a2069cecf738e69b056b53ed.jpg"
+      }
+    },
+    {
+      "requestType": "Участник выгнан",
+      "endpoint": "/kick",
+      "date": "2024-12-25T22:55:24.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234"
+      }
+    },
+    {
+      "requestType": "Приветствие отправлено",
+      "endpoint": "/api/guildMemberAdd",
+      "date": "2024-12-25T22:56:52.000Z",
+      "body": {
+        "member": "328959122949144577"
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:02:00.000Z",
+      "body": {
+        "memberId": "207435204057497602",
+        "token": "1234",
+        "roles": [
+          "1316468293418090640"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:02:21.000Z",
+      "body": {
+        "memberId": "207435204057497602",
+        "token": "1234",
+        "roles": [
+          "1103760067163074594"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:02:38.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1103760067163074594",
+          "1105126798204874772"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:03:14.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:03:20.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1103760067163074594"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:03:29.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:04:09.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:04:13.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1103760067163074594",
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:05:23.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1283858721033682985",
+          "1105126798204874772"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:05:27.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1283858721033682985",
+          "1105126798204874772"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:05:36.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772",
+          "1103760067163074594",
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:05:41.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772",
+          "1103760067163074594"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:05:50.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:05:55.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:05:59.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772",
+          "1103760067163074594",
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:06:55.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772",
+          "1103760067163074594",
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:07:25.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1103760067163074594"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:07:32.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:07:40.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:07:44.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772",
+          "1283858721033682985"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:07:47.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:07:48.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1283858721033682985"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:08:34.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1026171268577378455",
+          "1105126798204874772"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:08:38.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1103760067163074594"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:10:05.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1105126798204874772",
+          "1283858721033682985",
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:10:09.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1283858721033682985",
+          "1105126798204874772",
+          "1026171268577378455"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:10:13.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1103760067163074594"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:10:19.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1006672872082788353"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:10:22.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1006672872082788353"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:10:25.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1103760067163074594"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:10:29.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1316468293418090640"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль удалена",
+      "endpoint": "/api/removeRoles",
+      "date": "2024-12-25T23:11:25.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "898893129476866089"
+        ]
+      }
+    },
+    {
+      "requestType": "Роль добавлена",
+      "endpoint": "/api/addRoles",
+      "date": "2024-12-25T23:12:37.000Z",
+      "body": {
+        "memberId": "328959122949144577",
+        "token": "1234",
+        "roles": [
+          "1026171268577378455"
+        ]
+      }
+    }
+  ],
+  "totalOperations": 64
+}

@@ -1,0 +1,394 @@
+<div id="members">
+    <div  style="padding: 100px; display: flex; justify-content: center; margin-bottom: 150px;">
+        <div class="serv_description" style="display: flex;">
+            <img style="border-radius:100%; border:solid 1px rgba(250, 92, 171, 0.37); margin:0px 20px 0px 10px;" src="{{guildAvatarUrl}}" width="100" height="100" />
+            <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; height: 50px;">
+                <h3 style="font-size: 30px; margin: 0px 0px 5px 0px;">{{guildName}}</h3>
+                <ul class="inline-list">
+                    <li>Текстовых каналов: <span>{{textChannelCount}}</span></li>
+                    <li>Участников: <span>{{memberCount}}</span></li>
+                    <li>Голосовых каналов: <span>{{voiceChannelCount}}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div  style="display: flex; justify-content: center;">
+        <div class="desc" id="participantContainer" >
+            <h3 style="font-size: 24px; padding: 0px 0px 10px 20px; border-bottom: white 1px solid; color: white;">Участники:</h3>
+            <div style="display: flex; flex-direction: column; margin: 0">
+                {{#each members}}
+                 {{#if (neq this.username ".caat.")}}
+                    <div class="member" style="display: flex; padding: 10px; align-items: center; flex-direction: row; text-align: center; {{#if this.banned}}background-color: rgba(255, 0, 0, 0.2);{{/if}} {{#if this.timeout}}border: 2px solid orange;{{/if}}"
+                        onclick="selectMember('{{this.id}}', '{{this.username}}', '{{this.avatarURL}}', '{{this.roles}}')">
+                        <img src="{{this.avatarURL}}" alt="{{this.username}}" style="border-radius: 50%; width: 50px; height: 50px; padding: 10px;" />
+                        <p style="color:white; font-weight: 500">{{this.username}}</p>
+                    </div>
+                 {{/if}}
+                {{/each}}
+            </div>
+        </div>
+        <div id="member_item" style="display: flex; justify-content:space-around; align-items: center; flex-direction: column;">
+            <div id="selected_member" style="display: none; width: 90%; text-align: center;">
+                <div style="display: flex; flex-direction: row; align-items: center;">
+                    <input type="hidden" id="selected_member_id" value="">
+                    <img id="selectedAvatar" src="" alt="Avatar" style="border-radius: 50%; width: 80px; height: 80px; margin: 10px;" />
+                    <h2 id="selectedUsername" style="color: white;">Выберите участника</h2>
+                </div>
+                <ul class="inline-list-roles" id="rolesList">
+                
+                </ul>
+            </div>
+
+            <div style="position: relative; display: inline-block;">
+                <button id="editRolesButton" style="display: none;" onclick="toggleEditRolesModal(selectedMemberRoles)">Редактировать роли</button>
+                
+                <div id="editRolesModal" style="display: none;" data-all-roles="{{allRoles}}">
+                    <ul id="allRolesList" style="margin: 2px;" data-allroles="{{allRoles}}">
+                        
+                    </ul>
+                    <button id="applyChangesButton" onclick="applyRoleChanges()">Подтвердить</button>
+                    <button id="close" onclick="closeEditRolesModal()">Закрыть</button>
+                </div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <button id="actionButton" style="display: none;" onclick="toggleActionMenu()">Действия с участником</button>
+                <div id="editActionModal" style="display: none;" data-all-roles="{{allRoles}}">
+                        <ul id="actions">
+                            <li onclick="banMember()">Забанить</li>
+                            <li onclick="unbanMember()">Разбанить</li>
+                            <li onclick="kickMember()">Кикнуть</li>
+                        </ul>
+                <button id="close" onclick="closeEditRolesModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+let selectedMemberRoles = []; 
+
+document.addEventListener('click', function(event) {
+    const editRolesModal = document.getElementById('editRolesModal');
+    const actionModal = document.getElementById('editActionModal');
+    const editRolesButton = document.getElementById('editRolesButton');
+    const actionButton = document.getElementById('actionButton');
+
+    if (editRolesModal.style.display === 'flex' && !editRolesModal.contains(event.target) && !editRolesButton.contains(event.target)) {
+        editRolesModal.style.display = 'none';
+    }
+    
+    if (actionModal.style.display === 'flex' && !actionModal.contains(event.target) && !actionButton.contains(event.target)) {
+        actionModal.style.display = 'none';
+    }
+});
+
+function toggleEditRolesModal() {
+    const editRolesModal = document.getElementById('editRolesModal');
+    const actionModal = document.getElementById('editActionModal');
+
+    if (actionModal.style.display === 'flex') {
+        actionModal.style.display = 'none';
+    }
+
+    if (editRolesModal) {
+        editRolesModal.style.display = editRolesModal.style.display === 'none' ? 'flex' : 'none';
+
+        if (editRolesModal.style.display === 'flex') {
+            loadRoles(selectedMemberRoles); 
+        }
+    } else {
+        console.error('Edit roles modal not found!');
+    }
+}
+
+function toggleActionMenu() {
+    const actionModal = document.getElementById('editActionModal');
+    const editRolesModal = document.getElementById('editRolesModal');
+
+    if (editRolesModal.style.display === 'flex') {
+        editRolesModal.style.display = 'none';
+    }
+
+    if (actionModal) {
+        actionModal.style.display = actionModal.style.display === 'none' ? 'flex' : 'none';
+
+        if (actionModal.style.display === 'flex') {
+        }
+    } else {
+        console.error('Edit roles modal not found!');
+    }
+}
+
+function closeEditRolesModal() {
+    document.getElementById('actions').style.display = 'none'; 
+}
+
+async function updateParticipantList() {
+    const token = document.querySelector('input[name="token"]').value; 
+    try {
+        const response = await fetch(`/edit_mbs?token=${token}`);
+        if (!response.ok) {
+            throw new Error(`Ошибка: ${response.statusText}`);
+        }
+
+        const updatedData = await response.text();
+        const participantContainer = document.getElementById('members');
+        participantContainer.innerHTML = updatedData; 
+
+    } catch (error) {
+        console.error('Ошибка при обновлении списка участников:', error);
+    }
+}
+
+async function banMember() {
+    const memberId = document.getElementById('selected_member_id').value;
+    const token = document.querySelector('input[name="token"]').value; 
+    try {
+        const response = await fetch('/ban', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ memberId, token})
+        });
+
+        if (!response.ok) {
+            throw new Error(`Ошибка: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        console.log(`Забанить участника: ${memberId}`, result);
+        await updateParticipantList();
+        closeEditRolesModal(); 
+    } catch (error) {
+        console.error('Ошибка при запросе на бан:', error);
+    }
+}
+
+async function unbanMember() {
+    const memberId = document.getElementById('selected_member_id').value;
+    const token = document.querySelector('input[name="token"]').value; 
+    try {
+        const response = await fetch('/unban', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ memberId, token})
+        });
+
+        if (!response.ok) {
+            throw new Error(`Ошибка: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        console.log(`Разбанить участника: ${memberId}`, result);
+        await updateParticipantList();
+        closeEditRolesModal();
+    } catch (error) {
+        console.error('Ошибка при запросе на разбан:', error);
+    }
+}
+
+async function kickMember() {
+    const memberId = document.getElementById('selected_member_id').value;
+    const token = document.querySelector('input[name="token"]').value; 
+    try {
+        const response = await fetch('/kick', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ memberId, token})
+        });
+
+        if (!response.ok) {
+            throw new Error(`Ошибка: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        console.log(`Кикнуть участника: ${memberId}`, result);
+
+        closeEditRolesModal(); 
+    } catch (error) {
+        console.error('Ошибка при запросе на кик:', error);
+    }
+}
+
+let rolesToAdd = [];
+let rolesToRemove = [];
+
+function loadRoles(memberRoles) {
+    const allRoles = JSON.parse(document.getElementById('allRolesList').dataset.allroles);
+    const allRolesList = document.getElementById('allRolesList');
+    allRolesList.innerHTML = ''; 
+
+    rolesToAdd = [];
+    rolesToRemove = [];
+
+    const memberRolesSet = new Set(memberRoles.map(role => role.id));
+
+    allRoles.forEach(role => {
+        const li = document.createElement('li');
+        li.textContent = role.name;
+        li.style.setProperty('--marker-list-color', role.hexColor);
+        
+        li.style.color = memberRolesSet.has(role.id) ? '' : ''; 
+
+        const actionSpan = document.createElement('span');
+        actionSpan.textContent = memberRolesSet.has(role.id) ? '➖' : '➕';
+        actionSpan.style.cursor = 'pointer';
+        actionSpan.style.marginLeft = '10px'; 
+
+        actionSpan.onclick = () => {
+            if (memberRolesSet.has(role.id)) {
+                if (rolesToRemove.includes(role.id)) {
+                    rolesToRemove = rolesToRemove.filter(id => id !== role.id);
+                    li.style.color = '';
+                    actionSpan.textContent = '➖';
+                } else {
+                    rolesToRemove.push(role.id);
+                    li.style.color = 'red'; 
+                    actionSpan.textContent = '➕'; 
+                }
+            } else {
+                if (rolesToAdd.includes(role.id)) {
+                    rolesToAdd = rolesToAdd.filter(id => id !== role.id);
+                    li.style.color = ''; 
+                    actionSpan.textContent = '➕'; 
+                } else {
+                   
+                    rolesToAdd.push(role.id);
+                    li.style.color = 'magenta'; 
+                    actionSpan.textContent = '➖'; 
+                }
+            }
+
+            console.log('Roles to add:', rolesToAdd);
+            console.log('Roles to remove:', rolesToRemove);
+        };
+
+        li.appendChild(actionSpan);
+        allRolesList.appendChild(li);
+    });
+}
+function selectMember(memberId, username, avatarURL, rolesString) {
+    const roles = JSON.parse(rolesString || '[]'); 
+    selectedMemberRoles = roles; 
+
+    console.log("Parsed Roles:", roles);
+    console.log(Array.isArray(roles)); 
+    document.getElementById('selected_member_id').value = memberId;
+ 
+    document.getElementById('selectedAvatar').src = avatarURL;
+    document.getElementById('selectedUsername').textContent = username;
+
+    const rolesList = document.getElementById('rolesList');
+    rolesList.innerHTML = '';
+
+  
+    roles.forEach(role => {
+        const li = document.createElement('li');
+        li.textContent = role.name; 
+        li.style.setProperty('--marker-color', role.hexColor);
+        rolesList.appendChild(li);
+    });
+
+    document.getElementById('selected_member').style.display = 'block';
+    document.getElementById('editRolesButton').style.display = 'inline-block';
+    document.getElementById('actionButton').style.display = 'inline-block';
+}
+
+async function applyRoleChanges() {
+    const memberId = document.getElementById('selected_member_id').value; 
+    const token = document.querySelector('input[name="token"]').value;
+
+    console.log('Отправляем запрос с данными:', {
+        memberId,
+        token,
+        rolesToAdd,
+        rolesToRemove
+    });
+
+    try {
+        // Запрос на добавление ролей
+        if (rolesToAdd.length > 0) {
+            console.log(`Добавляем роли: ${rolesToAdd}`);
+            const addResponse = await fetch('/api/addRoles', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    memberId,
+                    token,
+                    roles: rolesToAdd,
+                })
+            });
+
+            if (!addResponse.ok) {
+                throw new Error(`Ошибка добавления ролей: ${addResponse.statusText}`);
+            }
+
+            const addResult = await addResponse.json();
+            console.log('Результат добавления ролей:', addResult);
+        }
+
+        // Запрос на удаление ролей
+        if (rolesToRemove.length > 0) {
+            console.log(`Удаляем роли: ${rolesToRemove}`);
+            const removeResponse = await fetch('/api/removeRoles', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    memberId,
+                    token,
+                    roles: rolesToRemove,
+                })
+            });
+
+            if (!removeResponse.ok) {
+                throw new Error(`Ошибка удаления ролей: ${removeResponse.statusText}`);
+            }
+
+            const removeResult = await removeResponse.json();
+            console.log('Результат удаления ролей:', removeResult);
+        }
+        // Получение обновленных ролей
+        const updatedRolesResponse = await fetch(`/api/getMemberRoles?memberId=${memberId}&token=${token}`);
+        if (!updatedRolesResponse.ok) {
+            throw new Error(`Ошибка получения обновленных ролей: ${updatedRolesResponse.statusText}`);
+        }
+
+        const updatedRoles = await updatedRolesResponse.json();
+        updateRolesList(updatedRoles); 
+
+    } catch (error) {
+        console.error('Ошибка при запросе:', error);
+    }
+}
+
+function updateRolesList(memberRoles) {
+    const rolesList = document.getElementById('rolesList');
+    rolesList.innerHTML = ''; 
+
+    // Добавить обновленные роли участника
+    memberRoles.forEach(role => {
+        const li = document.createElement('li');
+        li.textContent = role.name; 
+        li.style.setProperty('--marker-color', role.hexColor); 
+        rolesList.appendChild(li);
+    });
+
+    loadRoles(memberRoles);
+}
+
+function closeEditRolesModal() {
+    document.getElementById('editRolesModal').style.display = 'none';
+}
+
+
+</script>

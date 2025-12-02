@@ -1,0 +1,235 @@
+<div style="padding: 100px; display: flex; justify-content: center; margin-bottom: 150px;">
+    <div class="serv_description" style="display: flex;">
+        <img style="border-radius:100%; border:solid 1px rgba(250, 92, 171, 0.37); margin:0px 20px 0px 10px;" src="{{guildAvatarUrl}}" width="100" height="100" />
+        <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; height: 50px;">
+            <h3 style="font-size: 30px; margin: 0px 0px 5px 0px;">{{guildName}}</h3>
+            <ul class="inline-list">
+                <li>Текстовых каналов: <span>{{textChannelCount}}</span></li>
+                <li>Участников: <span>{{memberCount}}</span></li>
+                <li>Голосовых каналов: <span>{{voiceChannelCount}}</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center;">
+    <div class="desc">
+        <div class="description_item" data-page-id="1">
+            <select class="styled_input_select">
+                <option value="1"><p style="margin:50px;">Выберите сообщение</p> <span>&#9776;</span></option>
+                {{#each embeds}}
+                    <option value="{{this.id}}">{{this.title}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <input class="styled_input_button_del"  style="width: 260px;" type="button" id="deleteEmbedBtn" value="Удалить" style="flex: 1;">
+    </div>
+
+    <div id="message_item" style="display: flex;align-items: center;justify-content: flex-end; ">
+        <div id="embedFields" style="display: none; flex-direction: column;">
+            <div id="rainbow-picker" style="width: 400px; position: relative; height: 30px; cursor: pointer; background: linear-gradient(to right, 
+                        #FF0000, 
+                        #FF7F00, 
+                        #FFFF00, 
+                        #00FF00,
+                        #0000FF, 
+                        #4B0082 
+            ); border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);"><div id="point" style="display: none;"></div></div>
+            <input type="text" id="embedTitle" placeholder="Заголовок" style="margin-top: 10px;">
+            <textarea id="embedDescription" placeholder="Описание" style="margin-top: 10px;"></textarea>
+            <input type="text" id="embedImgUrl" placeholder="Url Изображения" style="margin-top: 10px;"> <!-- Здесь добавлено поле для URL -->
+        </div>
+
+        <div style="display: flex; justify-content: space-around; width: 400px;">
+            <input class="styled_input_button" type="button" id="newEmbedBtn" value="Новый эмбед" style="flex: 1; margin-right: 10px;">
+            <input class="styled_input_button" type="button" id="saveEmbedBtn" value="Сохранить" style="flex: 1;">
+        </div>
+    </div>
+</div>
+
+<script>
+let embeds = [];
+let embedColor = '';
+
+const colors = [
+    '#FF0000', // красный
+    '#FF7F00', // оранжевый
+    '#FFFF00', // желтый
+    '#00FF00', // зеленый
+    '#0000FF', // синий
+    '#4B0082', // индиго
+];
+
+
+document.getElementById('deleteEmbedBtn').addEventListener('click', async function() {
+
+    if (!selectedId) {
+        alert('Пожалуйста, выберите сообщение для удаления.');
+        return;
+    }
+
+    const token = document.getElementsByName("token")[0].value;
+
+    try {
+        const response = await fetch('/api/deleteEmbed', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                token: token,
+                embedId: selectedId
+            })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert('Эмбед успешно удалён.');
+            updateEmbedList(); 
+        } else {
+            alert('Ошибка: ' + (data.error || 'Неизвестная ошибка'));
+        }
+    } catch (error) {
+        console.error('Ошибка при отправке запроса:', error);
+        alert('Ошибка при отправке запроса');
+    }
+});
+
+document.getElementById('newEmbedBtn').addEventListener('click', function() {
+    const embedFields = document.getElementById('embedFields');
+    embedFields.style.display = 'flex';
+    
+    document.getElementById('embedTitle').value = '';
+    document.getElementById('embedDescription').value = '';
+    document.getElementById('embedImgUrl').value = '';
+
+    const existingEmbeds = {{{json embeds}}}; 
+    const maxId = existingEmbeds.reduce((max, embed) => Math.max(max, parseInt(embed.id)), 0); 
+    embedId = (maxId + 1).toString();
+});
+
+let selectedId = ''
+document.addEventListener('DOMContentLoaded', function() {
+    const embedSelect = document.querySelector('.styled_input_select'); 
+
+    if (embedSelect) {
+        embedSelect.addEventListener('change', function() {
+            console.log(embeds)
+
+            if (embeds.length === 0) {
+                console.warn('Не найдено доступных эмбедов.');
+                return; 
+            }
+            selectedId = this.value;
+
+            const embedFields = document.getElementById('embedFields');
+            embedFields.style.display = 'flex';
+
+            if (selectedId) {
+                const embed = embeds.find(e => e.id === selectedId);
+                
+                if (embed) {
+                    embedId = selectedId; 
+                    embedColor = embed.color;
+                    console.log(embedColor)
+                    document.getElementById('embedTitle').value = embed.title;
+                    document.getElementById('embedDescription').value = embed.description;
+                    document.getElementById('embedImgUrl').value = embed.image ? embed.image.url : '';
+                }
+            }
+        }); 
+    } else {
+        console.warn('Элемент с классом "styled_input_select" не найден.');
+    }
+});
+
+
+document.getElementById('rainbow-picker').addEventListener('click', function(event) {
+    const rect = this.getBoundingClientRect();
+    const x = event.clientX - rect.left; 
+    const width = rect.width; 
+
+    const index = Math.floor((x / width) * (colors.length - 1)); 
+    embedColor = colors[index];
+
+    const point = document.getElementById('point');
+    point.style.display = "block";
+    point.style.left = x + 'px';
+
+    console.log(embedColor); 
+});
+
+document.getElementById('saveEmbedBtn').addEventListener('click', async function() {
+    const title = document.getElementById('embedTitle').value;
+    const description = document.getElementById('embedDescription').value; 
+    const imgUrl = document.getElementById('embedImgUrl').value;
+    
+    const token = document.getElementsByName("token")[0].value; 
+
+    try {
+        const response = await fetch('/api/saveEmbed', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                token: token,
+                embedId: embedId, 
+                color: embedColor,
+                title: title,
+                description: description,
+                imgUrl: imgUrl
+            })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert('Эмбед успешно сохранён!');
+            updateEmbedList();
+        } else {
+            alert('Ошибка: ' + (data.error || 'Неизвестная ошибка'));
+        }
+    } catch (error) {
+        console.error('Ошибка при отправке запроса:', error);
+        alert('Ошибка при отправке запроса');
+    }
+});
+
+// Обновление списка эмбедов
+async function updateEmbedList() {
+    const token = document.getElementsByName("token")[0].value; 
+
+    try {
+        const response = await fetch(`/api/getEmbeds?token=${encodeURIComponent(token)}`);
+        
+        if (!response.ok) {
+            throw new Error('Ошибка при получении эмбедов');
+        }
+
+        embeds = await response.json();
+        console.log('Полученные эмбеды:', embeds);
+
+        const embedSelect = document.querySelector('.styled_input_select');
+        embedSelect.innerHTML = ''; 
+        
+        const placeholderOption = document.createElement('option');
+        placeholderOption.value = '';
+        placeholderOption.textContent = 'Выберите сообщение';
+        embedSelect.appendChild(placeholderOption);
+
+        for (const embed of embeds) {
+            const option = document.createElement('option');
+            option.value = embed.id;
+            option.textContent = embed.title;
+            embedSelect.appendChild(option);
+        }
+    } catch (error) {
+        console.error('Ошибка при обновлении списка эмбедов:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateEmbedList(); 
+});
+
+</script>

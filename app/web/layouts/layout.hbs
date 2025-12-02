@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{{style}}">
+    <link rel="stylesheet" href="/css/nav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body style="margin: 0px;">
+    <input type="hidden" name="token" value="{{token}}">
+    <nav>
+    <div class="logo">
+    {{!-- <img src="/images/gund2.jpg" width="450" height="450" /> --}}
+
+    <div class="bot-name">GUNDOU</div></div>
+    <ul class="nav-list">
+        <li class="backbtn">
+            <a href="/main">Назад</a>
+        </li>
+        <!-- Выпадающий список -->
+        <li class="dropdown">
+            <a href="#" class="dropbtn">&#9776;</a>
+            <div class="dropdown-content">
+                <a href="/hello_msg">Приветственные сообщения</a>
+                <a href="/send_msg">Отправка сообщений</a>
+                <a href="/status_bar">Статус-бар</a>
+                <a href="/edit_mbs">Управление участниками</a>
+                <a href="/invite_bot">Приглашение в канал</a>
+            </div>
+        </li>
+        </ul>
+    </nav>
+
+    {{{body}}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const token = document.getElementsByName("token")[0].value;
+
+        const backLink = document.querySelector('.backbtn a');
+        backLink.setAttribute('href', `${backLink.href}?token=${token}`);
+        
+        const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+
+        dropdownLinks.forEach(link => {
+            const originalHref = link.getAttribute('href');
+            link.setAttribute('href', `${originalHref}?token=${token}`); 
+        });
+    });
+</script>
+</body>
+</html>

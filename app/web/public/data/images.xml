@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<all>
+    <image name="rules">
+        <path>/user_images/rules.png</path>
+    </image>
+    <image name="ruless">
+        <path>/user_images/rules.png</path>
+    </image>
+</all>

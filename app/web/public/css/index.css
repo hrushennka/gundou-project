@@ -1,0 +1,142 @@
+html {
+background-color: black;
+justify-content: center;
+width: 100%;
+}
+
+.background {
+position: absolute;
+height: 100%;
+width: 100%;
+background-image: url("/images/background.png");
+background-size: cover;
+background-repeat: repeat;
+background-position: 50% 0;
+filter: blur(2px);
+z-index: -1;
+}
+
+.main_container {
+display: flex;
+height: 100%;
+}
+
+form {
+display: flex;
+width: 100%;
+justify-content: center;
+}
+
+.container {
+margin: auto;
+display: grid;
+min-height: 100%;
+}
+
+.grid_item {
+display: flex;
+justify-content: center;
+}
+
+.styled_input_button {
+all: unset;
+text-align: center;
+padding: 15px 20px;
+font-size: 16px;
+color: #fff;
+background-color: rgb(17, 17, 18);
+border: none;
+clip-path: polygon(0 0, 100% 0, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+
+transition: .2s;
+}
+
+.styled_input_button:hover {
+cursor: pointer;
+background-color: rgb(27, 27, 28);
+
+transition: .2s;
+}
+
+.styled_input_select {
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+background-color: rgb(13, 14, 15);
+border: none;
+color: rgb(42, 224, 200);
+padding: 5px 30px 5px 10px;
+margin-top: .8em;
+font-size: 16px;
+cursor: pointer;
+outline: none;
+height: auto;
+}
+
+.styled_input_select option {
+background-color: rgb(50, 52, 61);
+color: #fff;
+}
+
+.styled_input_text {
+border: none;
+padding: 5px 0 5px 10px;
+background-color: rgb(13, 14, 15);
+color: #fff;
+outline: none;
+width: calc(100% - 10px);
+height: 286px;
+resize: none;
+}
+
+.styled_input_text_embed {
+border: none;
+padding: 5px 0 5px 10px;
+background-color: rgb(13, 14, 15);
+color: #fff;
+outline: none;
+width: calc(100% - 10px);
+height: 20px;
+resize: none;
+}
+
+.styled_input_text_embed_long {
+border: none;
+padding: 5px 0 5px 10px;
+background-color: rgb(13, 14, 15);
+color: #fff;
+outline: none;
+width: calc(100% - 10px);
+height: 50px;
+resize: none;
+}
+
+.styled_input_file {
+border: none;
+padding: 5px 0 5px 10px;
+background-color: rgb(13, 14, 15);
+color: #fff;
+outline: none;
+width: calc(100% - 10px);
+resize: none;
+}
+
+.styled_input_color{
+border: none;
+padding: 5px 0 5px 10px;
+background-color: rgb(13, 14, 15);
+color: #fff;
+outline: none;
+width: calc(100% - 10px);
+resize: none;
+}
+
+.content_lable {
+color: #fff;
+width: 100%;
+text-align: center;
+}
+
+#content {
+background-color: rgb(13, 14, 15);
+}

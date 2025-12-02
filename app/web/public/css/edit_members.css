@@ -1,0 +1,322 @@
+@import "https://unpkg.com/open-props/durations.min.css";
+body {
+    height: 250vh;
+    background: linear-gradient(180deg, #111111,#151616,#151616,#b61285);
+    margin: 0;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.serv_description{
+    box-shadow: 14px 6px 18px 0px rgba(221, 30, 119, 0.356);
+    width: 650px;
+    height: 125px;
+    align-items: flex-start;
+    color: white;
+    padding: 15px 20px 15px 20px;
+    margin-left: 10px;
+    background-color: #080808;
+    border-radius: 10px;
+    position: absolute;
+}
+.inline-list {
+    list-style-type: disc; 
+    padding: 0px; 
+    margin: 0px 0px 0px 15px;
+    display: flex; 
+    flex-wrap: wrap;
+    font-size: 18px;
+    justify-content: space-between;
+}
+
+.inline-list li {
+    width: 220px;
+
+}
+
+li::marker{
+    font-size: 25px;
+    color:#b61285;
+    padding-top: 10px;
+}
+
+span{
+    color:#e065bc;
+    font-weight: 700;
+}
+
+#type{
+    color:#f1eaef;
+}
+#type::before{
+    content:"•";
+    font-size: 30px;
+    color: #000000;
+    margin-right: 4px;
+}
+.desc {
+    background-color: #e9258a;
+    
+    display: block;
+    z-index: 1;
+    width: 300px;
+    height: 560px;
+    margin-top: 3px;
+    box-shadow:  18px 20px 7px rgb(0 0 0 / 63%);
+    overflow-y: auto; 
+}
+.styled_input_select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fd319a;
+    border: none;
+    color:white;
+    width: 300px;
+    padding: 5px 30px 5px 10px;
+    margin-top: .8em;
+    text-align: center;
+    font-size: 17px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 2px 10px 7px rgb(167 6 88 / 63%);
+    height: 130px;
+    margin-bottom: 10px;
+}
+
+#member_item{
+    box-shadow: 18px 20px 7px rgb(0 0 0 / 63%);
+    width: 400px;
+    z-index: 0;
+    color: white;
+    border: solid #0c0789;
+    border-width:  2px 2px 2px 0px;
+    padding: 0px 0px 0px 0px;
+    margin-left: 10px;
+    background-color: #1c1b1b;
+    border-radius: 5px;
+    margin:50px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content:flex-end;
+    align-items: center;
+}
+
+.styled_input_button {
+    all: unset;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #fff;
+    width: 360px;
+    background-color: #0e27cb;
+    border: none;
+    transition: .2s;
+}
+
+.styled_input_button_send{
+    all: unset;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #ebebeb;
+    width: 260px;
+    background-color: rgb(203 30 119);
+    border: none;
+    transition: .2s;
+}
+
+.styled_input_button_send:hover{
+    background-color: rgb(158, 25, 94);
+}
+
+.styled_input_button:hover{
+    background-color: #292571;
+}
+
+.content{
+    height: 230px;
+}
+#rainbow-picker {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+#textInput, #embedDescription, #embedTitle, #embedImgUrl{
+    margin:5px;
+    height: 500px;
+    background-color:#1f1e1f;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    padding-top: 10px; 
+    padding-bottom: 5px; 
+    padding-left: 15px; 
+    color: white; 
+    font-size: 16px; 
+    line-height: 1.2; 
+    box-shadow: -1px 1px 11px #1f1f1f;
+}
+
+#embedDescription{
+    height: 350px;
+    box-shadow: -3px 5px 11px #0c0c0c
+}
+
+#embedTitle{
+    height: 50px;
+    box-shadow: -3px 5px 11px #0c0c0c
+}
+
+#embedImgUrl{
+    height: 50px;
+}
+
+#textInput:focus, #embedDescription:focus, #embedTitle:focus{
+    border-color: #b61285; 
+    outline: none;
+}
+#clipIcon{
+    pointer-events: auto; 
+    transition: fill 0.3s; 
+    fill: #ff61ef;
+}
+.edit-btn, .delete-btn{
+    cursor: pointer; 
+    transition: stroke 0.3s;
+}
+
+#clipIcon:hover, .edit-btn:focus, .delete-btn:focus{
+    fill: #8273e4;
+}
+.edit-btn, .delete-btn {
+    cursor: pointer; 
+    transition: stroke 0.3s; 
+}
+
+.edit-btn:hover path, .delete-btn:hover path {
+    fill: rgb(73, 70, 71); 
+}
+
+.edit-btn:hover {
+    transform: scale(1.1); 
+}
+
+.delete-btn:hover {
+    transform: scale(1.1); 
+}
+
+
+
+.desc::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.desc::-webkit-scrollbar-thumb {
+    background: #c2136d ;
+    border-radius: 10px;
+}
+
+.desc::-webkit-scrollbar-thumb:hover {
+    background: #a30067; 
+}
+
+.member:hover{
+    background-color: #c9247e;
+    width: 150%;
+}
+
+.inline-list-roles {
+    list-style-type: disc; 
+    padding: 0px; 
+    margin: 0px 10px 0px 30px;
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.inline-list-roles li {
+    display: flex; 
+    align-items: center; 
+    padding: 5px 5px; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 5px; 
+    height:20px;
+}
+.inline-list-roles li::before {
+    content:"•";
+    color: var(--marker-color); 
+    margin-right: 8px; 
+    font-size: 70px; 
+    padding-bottom: 10px;
+}
+
+#allRolesList li::marker{
+    padding-top:10px;
+    color: var(--marker-list-color);
+}
+
+
+#editRolesModal, #editActionModal{
+    display: flex;
+    flex-direction: column;
+    position: absolute; 
+    top: 100%;
+    left: 0;
+    width: auto; 
+    min-width: 170px;
+    color: white;
+    background: rgb(48, 48, 48);
+    padding: 5px;
+    border: 1px solid #dd60a7;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 15px;
+    z-index: 1000;
+    white-space: nowrap; 
+}
+
+#allRolesList span {
+    margin-left:5px;
+}
+
+#editRolesButton, #close, #actionButton, #applyChangesButton{
+    background-color: rgba(66, 66, 66, 0.8);
+    color: white;
+    border: none;
+    padding: 20px 30px; 
+    border-radius: 2px;
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    font-size: 20px;
+}
+
+#close, #applyChangesButton {
+    margin: 10px;
+    padding: 5px 10px;
+    font-size: 17px;
+}
+
+#editRolesButton:hover, #close:hover, #actionButton:hover, #applyChangesButton:hover {
+    background-color: rgba(250, 92, 171, 1); 
+}
+
+#editRolesButton:active, #close:active, #actionButton:active, #applyChangesButton:active{
+    background-color: rgba(250, 92, 171, 0.6); 
+}
+
+#actions {
+    margin: 2px; 
+    list-style: none; 
+    padding: 0px;
+}
+
+#actions li {
+    padding: 8px; 
+    cursor: pointer; 
+}
+#actions li::marker{
+    display: none; 
+}
+#actions li:hover {
+    color:rgba(243, 19, 131, 0.829); 
+}

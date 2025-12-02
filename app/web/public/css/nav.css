@@ -1,0 +1,153 @@
+nav {
+    justify-content: space-between;
+    min-height: 45px;
+    max-height: 45px;
+    background-color: #120d16;
+    padding: 10px 200px;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+    border-bottom: 1px solid #9c7293a4;  
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0;
+}
+
+.bot-name {
+    color: white;
+    font-size: 18px; 
+    margin-right: auto; 
+    padding-left: 10px; 
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Выпадающий список */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    transition: display 0.5s;
+}
+
+.dropbtn {
+    background-color: rgba(255, 121, 205, 1);
+    color: white;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s, font-size 0.5s;
+}
+
+.dropdown-content {
+    opacity: 0;
+    visibility: hidden; 
+    position: absolute;
+    background-color: #1b161f;
+    min-width: 160px; 
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transition: opacity 0.5s ease, visibility 0.5s ease; 
+    margin-top: 9px;
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1; 
+    visibility: visible; 
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    
+    font-weight: 400;
+}
+
+.dropdown-content a:not(:last-child){
+    border-bottom: 1px solid rgb(243, 149, 208);
+}
+.dropdown-content a:hover {
+    background-color: #575757;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropbtn:hover {
+    background-color: rgb(255, 87, 193); 
+    border-color:  rgb(255, 87, 193); 
+    color:#1b161f;
+    font-size: 19px;
+
+
+}
+
+nav .nav-list {
+    justify-content: flex-end;
+}
+
+nav div{
+    font-weight: 700;
+}
+
+.backbtn {
+    background-color:  rgb(0, 0, 0);
+    color: white;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 10px 0 0 10px; 
+    border: 1px solid  rgba(255, 121, 205, 1);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.6s ease, font-size 0.6s ease;
+
+}
+.backbtn:hover{
+    background-color: rgba(202, 171, 194, 0.3); }
+.backbtn:hover a{
+    color: rgba(255, 121, 205, 1);
+    font-size: 18px;
+}
+.dropbtn {
+    background-color: rgba(255, 121, 205, 1);
+    color: white;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 0 10px 10px 0; 
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid rgba(255, 121, 205, 1);
+}
+
+nav img {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    z-index: 3;
+    border-radius: 100%;
+    border: 1px solid rgba(255, 121, 205, 1);
+    mask-image: radial-gradient(circle at center, rgb(0, 0, 0)50%, transparent);
+    animation: sliderShape 5s linear infinite;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}

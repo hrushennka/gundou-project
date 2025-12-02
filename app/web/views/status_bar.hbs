@@ -1,0 +1,108 @@
+<div style="padding: 100px; display: flex; justify-content: center; margin-bottom: 150px;">
+    <div class="serv_description" style="display: flex;">
+        <img style="border-radius:100%; border:solid 1px rgba(250, 92, 171, 0.37); margin:0px 20px 0px 10px;" src="{{clientAvatar}}" width="100" height="100" />
+        <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; height: 50px;">
+            <h3 style="font-size: 30px; margin: 0px 0px 5px 0px;">GUNDOU</h3>
+            <ul class="inline-list">
+               <li>Операций за все время: <span>{{totalOperations}}</span></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center;">
+    <div class="desc">
+        <input type="text" id="filterInput" placeholder="Фильтр по типу операции" onkeyup="filterTable()">
+        <div class="description_item">
+            <div class="back"></div>
+            <table id="operationsTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)" style="color:rgb(243, 220, 237); background: #101010; padding:20px; cursor: pointer;">Тип операции <span id="sortIndicator0"></span></th>
+                        <th onclick="sortTable(1)" style="color:rgb(243, 220, 237); background: #101010; padding:20px; cursor: pointer;">Дата <span id="sortIndicator1"></span></th>
+                        <th onclick="sortTable(2)" style="color:rgb(243, 220, 237); background: #101010; padding:20px; cursor: pointer;">Время <span id="sortIndicator2"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each operationsData}}
+                        <tr>
+                            <td style="padding:20px 40px 30px 40px; color:rgb(238, 221, 234); display:flex; align-items: center; border-bottom: 1px solid rgb(203 30 119); background: rgb(7, 7, 7);">
+                                <img src="/images/star.png" alt="" style=" left:20%;">  <span style="color: rgb(203 30 119)"></span>{{this.requestType}}</td>
+                            <td style="padding:21px 50px 30px 50px; color:rgb(238, 221, 234); border-bottom: 1px solid rgb(203 30 119); background: rgb(7, 7, 7);">{{this.date}}</td>
+                            <td style="padding:20px 50px 30px 50px; color:rgb(238, 221, 234); border-bottom: 1px solid rgb(203 30 119); background: rgb(7, 7, 7);">{{this.time}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+function filterTable() {
+    const input = document.getElementById('filterInput');
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById('operationsTable');
+    const rows = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        const requestType = cells[0] ? cells[0].textContent.toLowerCase() : '';
+        rows[i].style.display = requestType.includes(filter) ? '' : 'none';
+    }
+}
+
+function sortTable(columnIndex) {
+    const table = document.getElementById('operationsTable');
+    const tbody = table.getElementsByTagName("tbody")[0];
+
+    if (!tbody) {
+        console.error("Tbody not found.");
+        return;
+    }
+
+    const rows = Array.from(tbody.rows);
+    const isAscending = tbody.dataset.sortDirection === "asc";
+    
+    rows.sort((a, b) => {
+        let aValue, bValue;
+        
+        if (columnIndex === 0) { 
+            aValue = a.cells[0].innerText;
+            bValue = b.cells[0].innerText;
+        } else if (columnIndex === 1) {
+            aValue = new Date(a.cells[1].innerText);
+            bValue = new Date(b.cells[1].innerText);
+        } else if (columnIndex === 2) { 
+            aValue = a.cells[2].innerText;
+            bValue = b.cells[2].innerText;
+        }
+
+        if (columnIndex === 1) {
+            return isAscending ? aValue - bValue : bValue - aValue;
+        } else {
+            return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+        }
+    });
+
+    tbody.innerHTML = "";
+    tbody.dataset.sortDirection = isAscending ? "desc" : "asc"; 
+    
+    rows.forEach(row => tbody.appendChild(row));
+
+    updateSortIndicators(columnIndex, tbody);
+}
+
+function updateSortIndicators(columnIndex, tbody) {
+    const indicators = ['sortIndicator0', 'sortIndicator1', 'sortIndicator2'];
+    indicators.forEach((id, index) => {
+        const indicator = document.getElementById(id);
+        if (index === columnIndex) {
+            indicator.innerText = tbody.dataset.sortDirection === "asc" ? " ↑" : " ↓";
+        } else {
+            indicator.innerText = "";
+        }
+    });
+}
+</script>

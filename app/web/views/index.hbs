@@ -1,0 +1,40 @@
+<div class="main_container">
+<div class="background"></div>
+<div class="container">
+<iframe style="display: none;", name="dummyframe" id="dummyframe"></iframe>
+<form id="contentForm" target="dummyframe">
+<div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+    <div class="grid_item" style="display: grid; grid-template-columns: auto;">
+        <input type="hidden" name="token" value="{{token}}">
+
+        <select class="styled_input_select" name="optionId" style="color: goldenrod">
+                <option value=0>Отправка сообщения в канал</option>
+                <option value=1>Управление пользователями</option>
+        </select>
+
+        <select class="styled_input_select" name="channelId">
+            {{#each channels}}
+                <option value="{{this.id}}">{{this.name}}</option>
+            {{/each}}
+        </select>
+        <input class="styled_input_button" type="submit" value="Отправить">
+        
+        <select class="styled_input_select" name="typeId">
+                <option value=0>Текст</option>
+                <option value=1>Файл</option>
+                <option value=2>Эмбед</option>
+        </select>
+        <input class="styled_input_button" type="button" value="Добавить в очередь" onclick="addToQueue()">
+    </div>
+
+    <div class="grid_item">
+        <img src="{{clientAvatar}}" width="400" height="400" style="padding: .8em .8em 0 .8em;"/>
+    </div>
+
+    <div id="content" style="grid-column-start: 1; grid-column-end: 3; overflow: auto; height: 30em; margin: 15px 0 0 0;">
+
+    </div>
+</div>
+</form>
+</div>
+<script src="/scripts/main.js"></script>

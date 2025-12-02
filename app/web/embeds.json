@@ -1,0 +1,29 @@
+[
+    {
+        "id": "1",
+        "color": 414489,
+        "title": "Приветственное сообщение 2",
+        "description": "Описание ",
+        "image": {
+            "url": "https://i.pinimg.com/736x/5c/8a/4f/5c8a4f8bf2528c8e3c2ec5d4659a5fe5.jpg"
+        }
+    },
+    {
+        "id": "4",
+        "color": 16776960,
+        "title": "Сообщение приветственное 1",
+        "description": "Описание",
+        "image": {
+            "url": "https://i.pinimg.com/736x/24/db/13/24db13436b0a6ffa133cd16a651d85c3.jpg"
+        }
+    },
+    {
+        "id": "5",
+        "color": 4277385,
+        "title": "Приветственное сообщение 3",
+        "description": "Описание",
+        "image": {
+            "url": "https://i.pinimg.com/736x/65/86/4c/65864c69a2069cecf738e69b056b53ed.jpg"
+        }
+    }
+]
